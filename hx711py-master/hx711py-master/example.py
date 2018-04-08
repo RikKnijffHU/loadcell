@@ -40,8 +40,8 @@ def setup():
     """
     code run once
     """
-    hx.set_offset(`Place offset here`)
-    hx.set_scale(`Place ratio here`)
+    hx.set_offset(700000)
+    hx.set_scale(1479)
     hx.tare()
     pass
 
@@ -53,7 +53,9 @@ def loop():
 
     try:
         val = hx.read_average()
+        val1 = hx.get_grams()
         print val
+        print val1
 
         hx.power_down()
         time.sleep(.001)
