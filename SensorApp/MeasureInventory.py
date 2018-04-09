@@ -41,6 +41,7 @@ class MeasureInventory(object):
        while True:
         for product in self.products:
             try:
+                print(product.DT +' ' + product.SCK)
                 hx = self.setGPIOPofProduct(product)
                 print(hx.DOUT)
             # These three lines are usefull to debug wether to use MSB or LSB in the reading formats
