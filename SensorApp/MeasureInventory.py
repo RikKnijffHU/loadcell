@@ -5,7 +5,7 @@ import Product
 from hx711 import HX711
 
 class MeasureInventory(object):
-
+    hx = ''
     def __init__(self, products):
         self.products = products
 
