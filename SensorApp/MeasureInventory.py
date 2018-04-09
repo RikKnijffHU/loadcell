@@ -16,7 +16,7 @@ class MeasureInventory(object):
         sys.exit()
 
     def setGPIOPofProduct(self, product):
-        hx = HX711(product.dt, product.pd_sck)
+        hx = HX711(product.DT, product.SCK)
     # I've found out that, for some reason, the order of the bytes is not always the same between versions of python, numpy and the hx711 itself.
     # Still need to figure out why does it change.
     # If you're experiencing super random values, change these values to MSB or LSB until to get more stable values.
