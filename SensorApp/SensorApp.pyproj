@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>cba1c38a-b0b7-411c-a271-8168fb74b08a</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>example.py</StartupFile>
+    <StartupFile>Startup.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="example.py" />
+    <Compile Include="Startup.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Product.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MeasureInventory.py" />
     <Compile Include="hx711.py" />
     <Compile Include="test1.py">
       <SubType>Code</SubType>
