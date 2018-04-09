@@ -6,7 +6,7 @@ from hx711 import HX711
 
 class MeasureInventory(object):
 
-    def __init__(self, products: list[Product]):
+    def __init__(self, products):
         self.products = products
 
     def cleanAndExit():
