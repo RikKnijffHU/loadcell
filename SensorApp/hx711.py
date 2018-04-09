@@ -6,7 +6,7 @@ class HX711:
     def __init__(self, dout, pd_sck, gain=128):
         self.PD_SCK = pd_sck
         self.DOUT = dout
-        print('hx711 ' + dout +' ' + pd_sck)
+        
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.PD_SCK, GPIO.OUT)
         GPIO.setup(self.DOUT, GPIO.IN)
@@ -15,7 +15,7 @@ class HX711:
         self.REFERENCE_UNIT = 1  # The value returned by the hx711 that corresponds to your reference unit AFTER dividing by the SCALE.
         
         self.OFFSET = 1
-        self.lastVal = int(0)
+        self.lastVal = long(0)
 
         self.LSByte = [2, -1, -1]
         self.MSByte = [0, 3, 1]
@@ -52,7 +52,7 @@ class HX711:
 
     def read(self):
         while not self.is_ready():
-            #print("WAITING")
+            print("WAITING")
             pass
 
         dataBits = [self.createBoolList(), self.createBoolList(), self.createBoolList()]
@@ -111,10 +111,10 @@ class HX711:
         np_arr32 = np_arr8.view('uint32')
         self.lastVal = np_arr32
 
-        return int(self.lastVal)
+        return long(self.lastVal)
 
     def read_average(self, times=3):
-        values = int(0)
+        values = long(0)
         for i in range(times):
             values += self.read_long()
 
