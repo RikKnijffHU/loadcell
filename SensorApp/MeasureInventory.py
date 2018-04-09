@@ -5,7 +5,6 @@ import Product
 from hx711 import HX711
 
 class MeasureInventory(object):
-    hx = ''
     def __init__(self, products):
         self.products = products
 
@@ -36,12 +35,13 @@ class MeasureInventory(object):
 
         hx.reset()
         hx.tare()
+        return hx
 
     def measureProducts(self):
        while True:
         for product in self.products:
             try:
-                self.setGPIOPofProduct(product)
+                hx = self.setGPIOPofProduct(product)
             # These three lines are usefull to debug wether to use MSB or LSB in the reading formats
             # for the first parameter of "hx.set_reading_format("LSB", "MSB")".
             # Comment the two lines "val = hx.get_weight(5)" and "print val" and uncomment the three lines to see what it prints.
