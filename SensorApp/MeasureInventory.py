@@ -66,7 +66,7 @@ class MeasureInventory(object):
                     time.sleep(1)
                 
                 weight = self.reject_outliers(np.array([10, 12, 30,11, 12 ,10,10,12, 11,10]))
-                print(len(weight))
+                print(weight)
 
             except (KeyboardInterrupt, SystemExit):
                 cleanAndExit()
