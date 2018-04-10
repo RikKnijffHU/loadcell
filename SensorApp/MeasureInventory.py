@@ -59,13 +59,13 @@ class MeasureInventory(object):
                 for x in range(0, 9): 
                     val = int(hx.get_weight(5))
                     print(val)
-                    val_array = np.append(val_array, [val])
+                    val_array = np.append(val_array, [x])
                     print(val_array)
                     hx.power_down()
                     hx.power_up()
                     time.sleep(1)
                 
-                weight = self.reject_outliers(val_array)
+                weight = self.reject_outliers(np.array([10, 12, 30,11, 12 ,10,10,12, 11,10]))
                 print(len(weight))
 
             except (KeyboardInterrupt, SystemExit):
