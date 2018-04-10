@@ -52,7 +52,7 @@ class HX711:
 
     def read(self):
         while not self.is_ready():
-            print("WAITING")
+            #Sprint("WAITING")
             pass
 
         dataBits = [self.createBoolList(), self.createBoolList(), self.createBoolList()]
