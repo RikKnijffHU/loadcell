@@ -68,6 +68,7 @@ class MeasureInventory(object):
                     time.sleep(1)
                 print(val_array)
                 results = self.reject_outliers(val_array)
+                print(results)
                 weight = np.sum(results)/len(results)
                 print(weight)
 
