@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import sys
+import numpy as np
 from hx711 import HX711
 
 class MeasureInventory(object):
@@ -13,6 +14,9 @@ class MeasureInventory(object):
         GPIO.cleanup()
         print("Bye!")
         sys.exit()
+
+    def reject_outliers(data, m=2):
+        return data[abs(data - np.mean(data)) < m * np.std(data)]
 
     def setGPIOPofProduct(self, product):
         hx = HX711(int(product.DT), int(product.SCK))
@@ -32,7 +36,7 @@ class MeasureInventory(object):
     # and I got numbers around 184000 when I added 2kg. So, according to the rule of thirds:
     # If 2000 grams is 184000 then 1000 grams is 184000 / 2000 = 92.
     #hx.set_reference_unit(113)
-        hx.set_reference_unit(2195)
+        hx.set_reference_unit(1104)
 
         hx.reset()
         hx.tare()
@@ -51,11 +55,16 @@ class MeasureInventory(object):
             #print binary_string + " " + np_arr8_string
         
             # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
-                val = hx.get_weight(5)
-                print(val)
-        
-                hx.power_down()
-                hx.power_up()
-                time.sleep(1)
+                val_array = np.empty((0, 9))
+                for x in range(0, 9): 
+                    val = hx.get_weight(5)
+                    val_array = np.append(val_array, [val], axis=0)
+                    hx.power_down()
+                    hx.power_up()
+                    time.sleep(1)
+                
+                weight = self.reject_outliers(data, m=6)
+                print(weight)
+
             except (KeyboardInterrupt, SystemExit):
                 cleanAndExit()
