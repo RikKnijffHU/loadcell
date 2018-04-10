@@ -55,7 +55,7 @@ class MeasureInventory(object):
             #print binary_string + " " + np_arr8_string
         
             # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
-                val_array = np.empty((9))
+                val_array = np.empty()
                 for x in range(0, 9): 
                     val = int(hx.get_weight(5))
                     print(val)
@@ -65,7 +65,7 @@ class MeasureInventory(object):
                     hx.power_up()
                     time.sleep(1)
                 
-                weight = self.reject_outliers(np.array([10, 12, 30,11, 12 ,10,10,12, 11,10]))
+                weight = self.reject_outliers(val_array)
                 print(weight)
 
             except (KeyboardInterrupt, SystemExit):
