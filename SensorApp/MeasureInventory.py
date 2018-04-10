@@ -45,7 +45,7 @@ class MeasureInventory(object):
     def measureProducts(self):
        productHXList = []
        for product in self.products:
-           product.append(self.setGPIOPofProduct(product))
+           productHXList.append(self.setGPIOPofProduct(product))
        while True:
         for hx in self.productHXList:
             try:
