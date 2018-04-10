@@ -57,7 +57,7 @@ class MeasureInventory(object):
             # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
                 val_array = np.empty((9))
                 for x in range(0, 9): 
-                    val = hx.get_weight(5)
+                    val = int(hx.get_weight(5))
                     print(val)
                     val_array = np.append(val_array, [val])
                     print(val_array)
