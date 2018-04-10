@@ -43,10 +43,12 @@ class MeasureInventory(object):
         return hx
 
     def measureProducts(self):
+       productHXList = []
+       for product in self.products:
+           product.append(self.setGPIOPofProduct(product))
        while True:
-        for product in self.products:
+        for hx in self.productHXList:
             try:
-                hx = self.setGPIOPofProduct(product)
             # These three lines are usefull to debug wether to use MSB or LSB in the reading formats
             # for the first parameter of "hx.set_reading_format("LSB", "MSB")".
             # Comment the two lines "val = hx.get_weight(5)" and "print val" and uncomment the three lines to see what it prints.
@@ -60,11 +62,11 @@ class MeasureInventory(object):
                     val = int(hx.get_weight(5))
                     print(val)
                     val_array = np.append(val_array, [val])
-                    print(val_array)
+                    
                     hx.power_down()
                     hx.power_up()
                     time.sleep(1)
-                
+                print(val_array)
                 weight = self.reject_outliers(val_array)
                 print(weight)
 
