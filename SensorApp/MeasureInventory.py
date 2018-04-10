@@ -60,13 +60,13 @@ class MeasureInventory(object):
                     val = hx.get_weight(5)
                     print(val)
                     val_array = np.append(val_array, [val])
-                    print(val_array.all)
+                    print(val_array)
                     hx.power_down()
                     hx.power_up()
                     time.sleep(1)
                 
-                weight = self.reject_outliers(val_array, m=6)
-                print(weight)
+                weight = self.reject_outliers(val_array,6)
+                print(len(weight))
 
             except (KeyboardInterrupt, SystemExit):
                 cleanAndExit()
