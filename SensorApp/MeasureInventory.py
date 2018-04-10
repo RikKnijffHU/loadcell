@@ -47,7 +47,7 @@ class MeasureInventory(object):
        for product in self.products:
            productHXList.append(self.setGPIOPofProduct(product))
        while True:
-        for hx in self.productHXList:
+        for hx in productHXList:
             try:
             # These three lines are usefull to debug wether to use MSB or LSB in the reading formats
             # for the first parameter of "hx.set_reading_format("LSB", "MSB")".
