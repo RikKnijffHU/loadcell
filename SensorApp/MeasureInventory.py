@@ -71,6 +71,7 @@ class MeasureInventory(object):
                 print(results)
                 weight = np.sum(results)/len(results)
                 print(weight)
-
+                inventory = (weight - 19)/4
+                print(inventory)
             except (self,KeyboardInterrupt, SystemExit):
                 self.cleanAndExit()
