@@ -59,7 +59,7 @@ class MeasureInventory(object):
                 for x in range(0, 9): 
                     val = int(hx.get_weight(5))
                     print(val)
-                    val_array = np.append(val_array, [x])
+                    val_array = np.append(val_array, [val])
                     print(val_array)
                     hx.power_down()
                     hx.power_up()
