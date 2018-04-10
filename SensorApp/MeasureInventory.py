@@ -58,7 +58,9 @@ class MeasureInventory(object):
                 val_array = np.empty((0, 9))
                 for x in range(0, 9): 
                     val = hx.get_weight(5)
+                    print(val)
                     val_array = np.append(val_array, [val], axis=0)
+                    print(val_array.all)
                     hx.power_down()
                     hx.power_up()
                     time.sleep(1)
