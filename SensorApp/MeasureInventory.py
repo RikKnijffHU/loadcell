@@ -1,7 +1,6 @@
 import RPi.GPIO as GPIO
 import time
 import sys
-import Product
 from hx711 import HX711
 
 class MeasureInventory(object):
@@ -16,7 +15,7 @@ class MeasureInventory(object):
         sys.exit()
 
     def setGPIOPofProduct(self, product):
-        hx = HX711(long(product.DT), long(product.SCK))
+        hx = HX711(int(product.DT), int(product.SCK))
         
     # I've found out that, for some reason, the order of the bytes is not always the same between versions of python, numpy and the hx711 itself.
     # Still need to figure out why does it change.
@@ -57,6 +56,6 @@ class MeasureInventory(object):
         
                 hx.power_down()
                 hx.power_up()
-                time.sleep(10)
+                time.sleep(1)
             except (KeyboardInterrupt, SystemExit):
-                self.cleanAndExit()
+                cleanAndExit()
