@@ -65,7 +65,7 @@ class MeasureInventory(object):
                     hx.power_up()
                     time.sleep(1)
                 
-                weight = self.reject_outliers(data, m=6)
+                weight = self.reject_outliers(val_array, m=6)
                 print(weight)
 
             except (KeyboardInterrupt, SystemExit):
