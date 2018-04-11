@@ -12,6 +12,7 @@ s.listen(backlog)
 try:
     print('test')
     client, clientInfo = s.accept()
+    print(client)
     while 1:
         data = client.recv(size)
         if data:
