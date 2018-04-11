@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Bluetooth.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Startup.py">
       <SubType>Code</SubType>
     </Compile>
