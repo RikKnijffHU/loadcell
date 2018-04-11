@@ -70,8 +70,8 @@ class MeasureInventory(object):
                 results = self.reject_outliers(val_array)
                 print(results)
                 weight = np.sum(results)/len(results)
-                "{}{}".format(weight , 'gram')
+                print("{}{}".format(weight , 'gram'))
                 inventory = round((weight - 19)/4)
-                "{}{}".format(inventory , 'theezakjes')
+                print("{}{}".format(inventory , 'theezakjes'))
             except (self,KeyboardInterrupt, SystemExit):
                 self.cleanAndExit()
