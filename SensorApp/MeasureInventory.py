@@ -16,7 +16,11 @@ class MeasureInventory(object):
         sys.exit()
 
     def reject_outliers(self, data, m=2):
-        return data[abs(data - np.mean(data)) < m * np.std(data)]
+        d = np.abs(data - np.median(data))
+        mdev = np.median(d)
+        s = d/mdev if mdev else 0.
+        return data[s<m]
+#return data[abs(data - np.mean(data)) < m * np.std(data)]
 
     def setGPIOPofProduct(self, product):
         hx = HX711(int(product.DT), int(product.SCK))
@@ -71,7 +75,7 @@ class MeasureInventory(object):
                 print(results)
                 weight = np.sum(results)/len(results)
                 print(weight)
-                inventory = (weight - 19)/4
-                print(inventory)
+                inventory = round((weight - 19)/4)
+                print(inventory + 'g')
             except (self,KeyboardInterrupt, SystemExit):
                 self.cleanAndExit()
