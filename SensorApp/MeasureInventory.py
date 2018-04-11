@@ -72,7 +72,7 @@ class MeasureInventory(object):
                 print(results)
                 weight = np.sum(results)/len(results)
                 print("{}{}".format(weight , 'gram'))
-                inventory = round((weight - 19)/4)
+                inventory = round((weight - 19)/0.05)
                 print("{}{}".format(inventory , 'theezakjes'))
             except (self,KeyboardInterrupt, SystemExit):
                 self.cleanAndExit()
