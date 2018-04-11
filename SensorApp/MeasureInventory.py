@@ -71,7 +71,7 @@ class MeasureInventory(object):
                 print(results)
                 weight = sum(results)/len(results)
                 print(weight)
-                inventory = round((weight - 19)/4)
+                inventory = int(round((weight - 19)/4))
                 "{}{}".format(inventory + 'theezakjes')
             except (self,KeyboardInterrupt, SystemExit):
                 self.cleanAndExit()
