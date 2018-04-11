@@ -10,6 +10,7 @@ s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 s.bind((hostMACAddress, port))
 s.listen(backlog)
 try:
+    print('test')
     client, clientInfo = s.accept()
     while 1:
         data = client.recv(size)
