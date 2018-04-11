@@ -16,11 +16,7 @@ class MeasureInventory(object):
         sys.exit()
 
     def reject_outliers(self, data, m=2):
-        d = np.abs(data - np.median(data))
-        mdev = np.median(d)
-        s = d/mdev if mdev else 0.
-        return data[s<m]
-#return data[abs(data - np.mean(data)) < m * np.std(data)]
+      return data[abs(data - np.mean(data)) < m * np.std(data)]
 
     def setGPIOPofProduct(self, product):
         hx = HX711(int(product.DT), int(product.SCK))
