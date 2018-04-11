@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import sys
 import numpy as np
+from outliers import smirnov_grubbs as grubbs
 from hx711 import HX711
 
 class MeasureInventory(object):
@@ -67,7 +68,7 @@ class MeasureInventory(object):
                     hx.power_up()
                     time.sleep(1)
                 print(val_array)
-                results = self.reject_outliers(val_array)
+                results = grubbs.test(val_array, alpha=0.05)
                 print(results)
                 weight = np.sum(results)/len(results)
                 print("{}{}".format(weight , 'gram'))
