@@ -21,6 +21,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BleServer.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bluetooth.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mock\HX711.py">
       <SubType>Code</SubType>
     </Compile>

@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 import sys
+import numpy as np
+from outliers import smirnov_grubbs as grubbs
 from Model import Product
 from hx711 import HX711
 
@@ -14,6 +16,9 @@ class MeasureInventory(object):
         GPIO.cleanup()
         print("Bye!")
         sys.exit()
+
+    def reject_outliers(self, data, m=1):
+      return data[abs(data - np.mean(data)) < m * np.std(data)]
 
     def setGPIOPofProduct(self, product):
         hx = HX711(int(product.DT), int(product.SCK))
@@ -33,17 +38,19 @@ class MeasureInventory(object):
     # and I got numbers around 184000 when I added 2kg. So, according to the rule of thirds:
     # If 2000 grams is 184000 then 1000 grams is 184000 / 2000 = 92.
     #hx.set_reference_unit(113)
-        hx.set_reference_unit(2195)
+        hx.set_reference_unit(1104)
 
         hx.reset()
         hx.tare()
         return hx
 
     def measureProducts(self):
+       productHXList = []
+       for product in self.products:
+           productHXList.append(self.setGPIOPofProduct(product))
        while True:
-        for product in self.products:
+        for hx in productHXList:
             try:
-                hx = self.setGPIOPofProduct(product)
             # These three lines are usefull to debug wether to use MSB or LSB in the reading formats
             # for the first parameter of "hx.set_reading_format("LSB", "MSB")".
             # Comment the two lines "val = hx.get_weight(5)" and "print val" and uncomment the three lines to see what it prints.
@@ -52,11 +59,21 @@ class MeasureInventory(object):
             #print binary_string + " " + np_arr8_string
         
             # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
-                self.val = hx.get_weight(5)
-                print(val)
-        
-                hx.power_down()
-                hx.power_up()
-                time.sleep(10)
-            except (KeyboardInterrupt, SystemExit):
+                val_array = np.empty((0))
+                for x in range(0, 9): 
+                    val = max(0, int(hx.get_weight(5)))
+                    print(val)
+                    val_array = np.append(val_array, [val])
+                    
+                    hx.power_down()
+                    hx.power_up()
+                    time.sleep(1)
+                print(val_array)
+                results = grubbs.test(val_array, alpha=0.05)
+                print(results)
+                weight = np.sum(results)/len(results)
+                print("{}{}".format(weight , 'gram'))
+                inventory = round((weight - 19)/0.5)
+                print("{}{}".format(inventory , 'theezakjes'))
+            except (self,KeyboardInterrupt, SystemExit):
                 self.cleanAndExit()
