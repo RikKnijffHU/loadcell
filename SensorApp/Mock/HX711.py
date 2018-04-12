@@ -10,11 +10,15 @@ class HX711(object):
         pass
     
     def get_weight(*args, **xargs):
-        value = self.get_value(times)
-        value = value / self.REFERENCE_UNIT
-        return value
+        pass
 
     def tare(*args, **xargs):   
+        pass
+
+    def power_down(self):
+        pass
+
+    def power_up(self):
         pass
 
     def reset(*args, **xargs):

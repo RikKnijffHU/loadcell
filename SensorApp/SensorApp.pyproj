@@ -27,11 +27,20 @@
     <Compile Include="Bluetooth.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EnvironmentVariableReader.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mock\HX711.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mock\GPIO.py" />
     <Compile Include="Mock\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\EnvironmentVariableMapper.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\ProductHX.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\__init__.py">
@@ -45,13 +54,16 @@
     </Compile>
     <Compile Include="MeasureInventory.py" />
     <Compile Include="hx711.py" />
+    <Compile Include="Test\Test_EnvironmentVariableMapper.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Test\Test_MeasureInventory.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Test\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Test\Test_Startup.py">
+    <Compile Include="Test\Test_EnvironmentVariableReader.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -59,6 +71,7 @@
     <Folder Include="C:\Users\Rik_k\Source\repos\SensorApp\SensorApp\Test\" />
     <Folder Include="Mock\" />
     <Folder Include="Model\" />
+    <Folder Include="Test\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
