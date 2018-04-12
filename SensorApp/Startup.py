@@ -1,13 +1,14 @@
 import os
-from Product import Product
+from Model.Product import Product
 from MeasureInventory import MeasureInventory
 class Startup(object):
     """description of class"""
    
     def ReadEnviromentVariables(self):
         productList = []
-        #enviromentList: List[str] = os.environ.get('Products').split(',')
-        enviromentList = 'thee:2:14:15'.split(',')
+        
+        enviromentList: List[str] = os.environ.get('Products').split(',')
+        #enviromentList = 'thee:2:14:15'.split(',')
         for enviromentVariables in enviromentList:
             print(enviromentVariables) 
             variable = enviromentVariables.split(':')

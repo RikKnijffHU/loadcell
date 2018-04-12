@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import sys
-import Product
+from Model import Product
 from hx711 import HX711
 
 class MeasureInventory(object):
@@ -16,7 +16,7 @@ class MeasureInventory(object):
         sys.exit()
 
     def setGPIOPofProduct(self, product):
-        hx = HX711(long(product.DT), long(product.SCK))
+        hx = HX711(int(product.DT), int(product.SCK))
         
     # I've found out that, for some reason, the order of the bytes is not always the same between versions of python, numpy and the hx711 itself.
     # Still need to figure out why does it change.
@@ -52,7 +52,7 @@ class MeasureInventory(object):
             #print binary_string + " " + np_arr8_string
         
             # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
-                val = hx.get_weight(5)
+                self.val = hx.get_weight(5)
                 print(val)
         
                 hx.power_down()

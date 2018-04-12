@@ -21,17 +21,38 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Mock\HX711.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mock\GPIO.py" />
+    <Compile Include="Mock\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Startup.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Product.py">
+    <Compile Include="Model\Product.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MeasureInventory.py" />
     <Compile Include="hx711.py" />
-    <Compile Include="test1.py">
+    <Compile Include="Test\Test_MeasureInventory.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Test\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Test\Test_Startup.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="C:\Users\Rik_k\Source\repos\SensorApp\SensorApp\Test\" />
+    <Folder Include="Mock\" />
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
