@@ -16,9 +16,9 @@ noble.on('discover', function (peripheral) {
         console.log('connected to peripheral: ' + peripheral.uuid);
         peripheral.discoverServices([], function (error, services) {
             var immediateAlertService = services[0];
-            console.log('discovered Immediate Alert service');
+            console.log('discovered Immediate Alert service' + immediateAlertService.name);
 
-            immediateAlertService.discoverCharacteristics(['2a06'], function (error, characteristics) {
+            immediateAlertService.discoverCharacteristics(['34cd'], function (error, characteristics) {
                 var alertLevelCharacteristic = characteristics[0];
                 console.log('discovered Alert Level characteristic');
 
