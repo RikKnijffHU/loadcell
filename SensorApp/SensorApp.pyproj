@@ -30,6 +30,9 @@
     <Compile Include="EnvironmentVariableReader.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Gatt.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Mock\HX711.py">
       <SubType>Code</SubType>
     </Compile>
