@@ -18,7 +18,7 @@ noble.on('discover', function (peripheral) {
             var immediateAlertService = services[2];
             console.log('discovered Immediate Alert service' + immediateAlertService.uuid);
 
-            immediateAlertService.discoverCharacteristics(['34cd'], function (error, characteristics) {
+            immediateAlertService.discoverCharacteristics([], function (error, characteristics) {
                 var alertLevelCharacteristic = characteristics[0];
                 for (var c in characteristics) {
                     console.log(c.uuid)
