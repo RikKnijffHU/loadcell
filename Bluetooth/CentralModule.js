@@ -71,7 +71,7 @@ function exploreMe(error, services, characteristics) {
 function startBlink(characteristic) {
     // this function reads the characteristic:
     function blink() {
-        characteristic.write('hoi');
+        characteristic.write(new Buffer('hoi'));
     }
 
     // this function calls the blink function again
