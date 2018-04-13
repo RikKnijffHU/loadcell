@@ -1,7 +1,7 @@
 ﻿var noble = require('noble');   //noble library
 var peripheralName = "Thee";     // the local name of the peripheral you want
 var targetService = '12ab';         // the service you want
-var targetCharacteristic = '19b10001e8f2537e4f6cd104768a1214';  // the characteristic you want
+var targetCharacteristic = '000012AB-0000_1000_8000-00805F9B34FB';  // the characteristic you want
 
 var serviceUuids = [targetService];
 
@@ -14,7 +14,7 @@ noble.startScanning(serviceUuids, allowDuplicates);
 noble.on('discover', function (peripheral) {
     peripheral.connect(function (error) {
         console.log('connected to peripheral: ' + peripheral.uuid);
-        peripheral.discoverServices([], function (error, services) {
+        peripheral.discoverServices([targetCharacteristic], function (error, services) {
             var immediateAlertService = services[0];
             console.log('discovered Immediate Alert service' + immediateAlertService.uuid);
 
