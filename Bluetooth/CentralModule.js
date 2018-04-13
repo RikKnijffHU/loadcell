@@ -23,7 +23,7 @@ noble.on('discover', function (peripheral) {
 
             immediateAlertService.discoverCharacteristics([], function (error, characteristics) {
                 var alertLevelCharacteristic = characteristics[0];
-                console.log(characteristics);
+                console.log(alertLevelCharacteristic);
                
                 console.log('discovered Alert Level characteristic');
 
