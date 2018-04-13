@@ -20,7 +20,7 @@ Modified from Maria Paula Saba's exploreExample.
 
 var noble = require('noble');   //noble library
 var peripheralName = "LED";     // the local name of the peripheral you want
-var targetService = '34cd';         // the service you want
+var targetService = '12ab';         // the service you want
 var targetCharacteristic = '19b10001e8f2537e4f6cd104768a1214';  // the characteristic you want
 
 // The scanning function
@@ -64,6 +64,7 @@ function exploreMe(error, services, characteristics) {
 
     for (c in characteristics) {
         // since there's only one characteristic, start it blinking:
+        
         startBlink(characteristics[c]);
     }
 }
