@@ -1,65 +1,111 @@
-﻿
-/*
-  Noble simple scan example
-  This example uses Sandeep Mistry's noble library for node.js to
-  create a central server that reads BLE peripherals advertisements.
-  created 21 Jan 2015
-  by Maria Paula Saba
+﻿/*
+Noble characteristic read/write  example
+This example uses Sandeep Mistry's noble library for node.js to
+read and write to a characteristic of a peripheral. It's designed
+to work with the led example from Sandeep's arduino-BLEPeripheral example,
+in which there's one service, with one characteristic, and the
+characteristic can have the value 0 or 1. An LED attached to a BLE Nano
+or RFDuino is controlled by this characteristic.
+The startScanning function call filters for the specific service
+you want, in order to ignore other devices and services.
+For a peripheral example that works with this see the
+Arduino led example in Sandeep's Arduino-BLEPeripheral library:
+https://github.com/sandeepmistry/arduino-BLEPeripheral
+created 21 Feb 2015
+by Maria Paula Saba
+modified 12 Mar 2015
+by Tom Igoe
+Modified from Maria Paula Saba's exploreExample.
 */
 
 var noble = require('noble');   //noble library
+var peripheralName = "LED";     // the local name of the peripheral you want
+var targetService = '12ab';         // the service you want
+var targetCharacteristic = '19b10001e8f2537e4f6cd104768a1214';  // the characteristic you want
 
-// here we start scanning. we check if Bluetooth is on
-noble.on('stateChange', scan);
-
+// The scanning function
 function scan(state) {
-    if (state === 'poweredOn') {
-        noble.startScanning();
+    if (state === 'poweredOn') {    // if the radio's on, scan for this service
+        noble.startScanning([targetService], false);
         console.log("Started scanning");
-    } else {
+    } else {                        // if the radio's off, let the user know:
         noble.stopScanning();
         console.log("Is Bluetooth on?");
     }
 }
 
+// the main discovery function
+function findMe(peripheral) {
+    console.log('discovered ' + peripheral.advertisement.localName);
+    peripheral.connect();     // start connection attempts
 
-// for every peripheral we discover, run this callback function
-noble.on('discover', foundPeripheral);
+    // called only when the peripheral has the service you're looking for:
+    peripheral.on('connect', connectMe);
 
-function foundPeripheral(peripheral) {
-
-    //uncomment the line below if you want to see all data provided.
-    //console.log(peripheral);
-
-    //here we output the some data to the console.
-    console.log('\n Discovered new peripheral with UUID ' + peripheral.uuid + ':');
-    console.log('\t Peripheral Bluetooth address:' + peripheral.address);
-
-    if (peripheral.advertisement.localName) {
-        console.log('\t Peripheral local name:' + peripheral.advertisement.localName);
-    }
-    if (peripheral.rssi) {
-        console.log('\t RSSI: ' + peripheral.rssi); //RSSI is the signal strength
-    }
-    if (peripheral.state) {
-        console.log('\t state: ' + peripheral.state);
-    }
-    if (peripheral.advertisement.serviceUuids.length) {
-        console.log('\t Advertised services:' + JSON.stringify(peripheral.advertisement.serviceUuids));
+    // the connect function. This is local to the discovery function
+    // because it needs the peripheral to discover services:
+    function connectMe() {
+        noble.stopScanning();
+        console.log('Checking for services on ' + peripheral.advertisement.localName);
+        // start discovering services:
+        // you could also use peripheral.discoverSomeServicesAndCharacteristics here,
+        // and filter by the target service and characteristic:
+        peripheral.discoverAllServicesAndCharacteristics(exploreMe);
     }
 
-    var serviceData = peripheral.advertisement.serviceData;
-    if (serviceData && serviceData.length) {
-        console.log('\t Service Data:');
-        for (var i in serviceData) {
-            console.log('\t\t' + JSON.stringify(serviceData[i].uuid) + ': ' + JSON.stringify(serviceData[i].data.toString('hex')));
-        }
+    // when a peripheral disconnects, run disconnectMe:
+    peripheral.on('disconnect', disconnectMe);
+}
+
+// the service/characteristic exploration function:
+function exploreMe(error, services, characteristics) {
+    console.log('services: ' + services);
+    console.log('characteristics: ' + characteristics);
+
+    for (c in characteristics) {
+        // since there's only one characteristic, start it blinking:
+        startBlink(characteristics[c]);
     }
-    if (peripheral.advertisement.manufacturerData) {
-        console.log('\t Manufacturer data: ' + JSON.stringify(peripheral.advertisement.manufacturerData.toString('hex')));
-    }
-    if (peripheral.advertisement.txPowerLevel !== undefined) {
-        console.log('\t TX power level: ' + peripheral.advertisement.txPowerLevel);
+}
+
+function startBlink(characteristic) {
+    // this function reads the characteristic:
+    function blink() {
+        characteristic.read(changeState);
     }
 
-};
+    // this function changes the characteristic once it's read:
+    function changeState(error, data) {
+        if (error) throw error;
+        var ledState = data[0];
+        // if the current state is 1, make it 0, and vice versa:
+        data[0] = !ledState;
+        // write it back out to the peripheral:
+        characteristic.write(data, false, callback);
+    }
+
+    // this function calls the blink function again
+    // once the characteristic has been successfully read:
+    function callback(data, error) {
+        if (error) throw error;
+        // wait 50ms, then call blink() again:
+        interval = setTimeout(blink, 50);
+    }
+
+    // this makes the first call to start the blink loop
+    blink();
+}
+
+
+function disconnectMe() {
+    console.log('peripheral disconnected');
+    // exit the script:
+    process.exit(0);
+}
+
+/* ----------------------------------------------------
+The actual commands that start the program are below:
+*/
+
+noble.on('stateChange', scan);  // when the BT radio turns on, start scanning
+noble.on('discover', findMe);   // when you discover a peripheral, run findMe()
