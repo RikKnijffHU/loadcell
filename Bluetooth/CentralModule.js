@@ -14,7 +14,7 @@ noble.startScanning(serviceUuids, allowDuplicates);
 noble.on('discover', function (peripheral) {
     peripheral.connect(function (error) {
         console.log('connected to peripheral: ' + peripheral.uuid);
-        peripheral.discoverServices(['1802'], function (error, services) {
+        peripheral.discoverServices([], function (error, services) {
             var immediateAlertService = services[0];
             console.log('discovered Immediate Alert service');
 
