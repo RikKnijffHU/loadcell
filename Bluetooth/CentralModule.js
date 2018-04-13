@@ -61,3 +61,5 @@ function foundPeripheral(peripheral) {
     if (peripheral.advertisement.txPowerLevel !== undefined) {
         console.log('\t TX power level: ' + peripheral.advertisement.txPowerLevel);
     }
+
+};
