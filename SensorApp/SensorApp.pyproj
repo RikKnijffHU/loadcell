@@ -68,7 +68,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="C:\Users\Rik_k\Source\repos\SensorApp\SensorApp\Test\" />
     <Folder Include="Mock\" />
     <Folder Include="Model\" />
     <Folder Include="Test\" />
