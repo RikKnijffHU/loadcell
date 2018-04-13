@@ -28,9 +28,9 @@ noble.on('discover', function (peripheral) {
                 console.log('discovered Alert Level characteristic');
 
                 // true if for write without response
-                //alertLevelCharacteristic.write(new Buffer([0x01]), true, function (error) {
-                 //   console.log('set alert level to mid (1)');
-               // });
+                alertLevelCharacteristic.write(new Buffer([0x01]), true, function (error) {
+                    console.log('set alert level to mid (1)');
+                });
             });
         });
     });
