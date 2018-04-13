@@ -71,17 +71,7 @@ function exploreMe(error, services, characteristics) {
 function startBlink(characteristic) {
     // this function reads the characteristic:
     function blink() {
-        characteristic.read(changeState);
-    }
-
-    // this function changes the characteristic once it's read:
-    function changeState(error, data) {
-        if (error) throw error;
-        var ledState = data[0];
-        // if the current state is 1, make it 0, and vice versa:
-        data[0] = !ledState;
-        // write it back out to the peripheral:
-        characteristic.write(data, false, callback);
+        characteristic.write('hoi');
     }
 
     // this function calls the blink function again
