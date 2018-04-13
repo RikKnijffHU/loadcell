@@ -54,7 +54,7 @@ function findMe(peripheral) {
     }
 
     // when a peripheral disconnects, run disconnectMe:
-    peripheral.on('disconnect', disconnectMe);
+   // peripheral.on('disconnect', disconnectMe);
 }
 
 // the service/characteristic exploration function:
