@@ -37,7 +37,7 @@ bleno.on('advertisingStart', function (error) {
                     new bleno.Characteristic({
                         value: null,
                         uuid: '34cd',
-                        properties: ['write'],
+                        properties: ['writeWithoutResponse'],
 
                         // Accept a new value for the characterstic's value
                         onWriteRequest: function (data, offset, withoutResponse, callback) {
