@@ -31,7 +31,6 @@ class BluetoothHandler {
 
     sendBleMessage(data) {
         console.log('gelukt')
-        this.
         characteristic.write(new Buffer(data), true, function (error) {
             console.log('send');
         });
