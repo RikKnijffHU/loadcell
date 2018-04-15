@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     console.log(req.body);
     var handler = new BluetoothHandler('12ab');
-    handler.sendBleMessage(req.body);
+    handler.sendBleMessage('hoi');
 });
 
 module.exports = router;
