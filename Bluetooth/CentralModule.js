@@ -26,7 +26,7 @@ noble.on('discover', function (peripheral) {
                 for (var i in characteristics) {
                     var alertLevelCharacteristic = characteristics[i]
                     console.log(i);
-                    console.log(characteristics.uuid);
+                    console.log(characteristics[i].uuid);
                 }
                 
 
