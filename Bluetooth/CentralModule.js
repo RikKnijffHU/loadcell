@@ -20,7 +20,7 @@ class BluetoothHandler {
 
 
                     service.discoverCharacteristics(null, function (error, characteristics) {
-                      var characteristic = characteristics[0]
+                      this.characteristic = characteristics[0]
                     });
                 });
             });
