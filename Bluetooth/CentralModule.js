@@ -15,7 +15,7 @@ class BluetoothHandler {
         noble.startScanning(serviceUuids, allowDuplicates);
 
 
-        noble.on('discover', function (peripheral) {
+         noble.on('discover', function (peripheral) {
             peripheral.connect(function (error) {
 
                 peripheral.discoverServices(['12ab'], function (error, services) {
@@ -24,7 +24,7 @@ class BluetoothHandler {
 
                     service.discoverCharacteristics(null, function (error, characteristics) {
                         console.log(characteristics[0].uuid + ' ' + ble.characteristic);
-                        ble.characteristic = characteristics[0];
+                     await ble.characteristic = characteristics[0];
                     });
                 });
             });
