@@ -27,6 +27,9 @@ noble.on('discover', function (peripheral) {
                     var alertLevelCharacteristic = characteristics[i]
                     console.log(i);
                     console.log(characteristics[i].uuid);
+                    characteristics[i].write(new Buffer('hoi'), false, function (error) {
+                        console.log('set alert level to mid (1)');
+                    });
                 }
                 
 
