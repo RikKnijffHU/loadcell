@@ -4,7 +4,6 @@ var targetService = '12ab';         // the service you want
 var targetCharacteristic = '000012AB-0000-1000-8000-00805F9B34FB';  // the characteristic you want
 
 var serviceUuids = [targetService];
-var characteristic = null;
 // allow duplicate peripheral to be returned (default false) on discovery event
 var allowDuplicates = false;
 class BluetoothHandler {
@@ -21,7 +20,7 @@ class BluetoothHandler {
 
 
                     service.discoverCharacteristics(null, function (error, characteristics) {
-                      characteristic = characteristics[0]
+                      var characteristic = characteristics[0]
                     });
                 });
             });
