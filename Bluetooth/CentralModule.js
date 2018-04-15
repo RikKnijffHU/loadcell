@@ -4,36 +4,34 @@ var targetService = '12ab';         // the service you want
 var targetCharacteristic = '000012AB-0000-1000-8000-00805F9B34FB';  // the characteristic you want
 
 var serviceUuids = [targetService];
-
+var characteristic = null;
 // allow duplicate peripheral to be returned (default false) on discovery event
 var allowDuplicates = false;
+class BluetoothHandler {
+    constructor(peripheral) {
+        noble.startScanning(serviceUuids, allowDuplicates);
 
-noble.startScanning(serviceUuids, allowDuplicates);
+
+        noble.on('discover', function (peripheral) {
+            peripheral.connect(function (error) {
+
+                peripheral.discoverServices([targetService], function (error, services) {
+                    var service = services[0];
 
 
-noble.on('discover', function (peripheral) {
-    peripheral.connect(function (error) {
-        console.log('connected to peripheral: ' + peripheral.uuid);
-        peripheral.discoverServices(['12ab'], function (error, services) {
-            var immediateAlertService = services[0];
-            
-            console.log(services);
-         
-            console.log('discovered Immediate Alert service' + immediateAlertService.uuid);
-
-            immediateAlertService.discoverCharacteristics(null, function (error, characteristics) {
-                var alertLevelCharacteristic = characteristics[0]
-               
-                    alertLevelCharacteristic.write(new Buffer('hoi'), true, function (error) {
-                        console.log('set alert level to mid (1)');
+                    service.discoverCharacteristics(null, function (error, characteristics) {
+                        this.characteristic = characteristics[0]
                     });
-                
-
-                // true if for write without response
-                alertLevelCharacteristic.write(new Buffer('doei'), true, function (error) {
-                    console.log('set alert level to mid (1)');
                 });
             });
         });
-    });
-});
+    }
+
+    sendBleMessage(data) {
+        console.log('gelukt')
+        this.characteristic.write(new Buffer(data), true, function (error) {
+            console.log('send');
+        });
+    }
+}
+module.exports = BluetoothHandler;
