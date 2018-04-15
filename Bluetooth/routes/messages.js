@@ -1,7 +1,7 @@
 ﻿'use strict';
 var express = require('express');
 var router = express.Router();
-var BluetoothHandler = require('../CentralModule')
+var BluetoothHandler = require('../CentralModule');
 
 /* GET users listing. */
 router.get('/', function (req, res) {
@@ -10,9 +10,9 @@ router.get('/', function (req, res) {
 
 /* POST send message with bluetooth */
 router.post('/', function (req, res) {
-    console.log(req.body)
+    console.log(req.body);
     var handler = new BluetoothHandler();
-    handler.sendBleMessage(req.body)
+    handler.sendBleMessage(req.body);
 });
 
 module.exports = router;

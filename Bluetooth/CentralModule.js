@@ -1,4 +1,4 @@
-﻿var noble = require('noble');   //noble library
+﻿//var noble = require('noble');   //noble library
 var peripheralName = "Thee";     // the local name of the peripheral you want
 var targetService = '12ab';         // the service you want
 var targetCharacteristic = '000012AB-0000-1000-8000-00805F9B34FB';  // the characteristic you want
@@ -8,6 +8,7 @@ var characteristic = null;
 // allow duplicate peripheral to be returned (default false) on discovery event
 var allowDuplicates = false;
 class BluetoothHandler {
+this.characteristic = null;
     constructor(peripheral) {
         noble.startScanning(serviceUuids, allowDuplicates);
 
@@ -20,7 +21,7 @@ class BluetoothHandler {
 
 
                     service.discoverCharacteristics(null, function (error, characteristics) {
-                        this.characteristic = characteristics[0]
+                      characteristic = characteristics[0]
                     });
                 });
             });
