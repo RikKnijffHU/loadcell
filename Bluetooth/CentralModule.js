@@ -22,7 +22,7 @@ class BluetoothHandler {
 
 
                     service.discoverCharacteristics(null, function (error, characteristics) {
-                        this.BluetoothHandler.characteristic = characteristics[0];
+                        BluetoothHandler.characteristic = characteristics[0];
                     });
                 });
             });
