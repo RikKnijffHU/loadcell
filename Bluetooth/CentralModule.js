@@ -11,7 +11,7 @@ class BluetoothHandler {
 
     constructor(peripheral) {
         var ble = this;
-        this.characteristic = null;
+        this.characteristic = "hoi";
         noble.startScanning(serviceUuids, allowDuplicates);
 
 
@@ -23,7 +23,7 @@ class BluetoothHandler {
 
 
                     service.discoverCharacteristics(null, function (error, characteristics) {
-                        console.log(characteristics[0].uuid);
+                        console.log(characteristics[0].uuid + ' ' + ble.characteristic);
                         ble.characteristic = characteristics[0];
                     });
                 });
