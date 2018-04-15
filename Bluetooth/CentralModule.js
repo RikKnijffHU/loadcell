@@ -23,7 +23,7 @@ noble.on('discover', function (peripheral) {
 
             immediateAlertService.discoverCharacteristics(null, function (error, characteristics) {
                 var alertLevelCharacteristic = characteristics[0]
-                console.log(characteristics[0]);
+                console.log(characteristics);
                 
 
                 // true if for write without response
