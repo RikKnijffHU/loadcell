@@ -21,10 +21,17 @@ noble.on('discover', function (peripheral) {
          
             console.log('discovered Immediate Alert service' + immediateAlertService.uuid);
 
+            immediateAlertService.discoverCharacteristics(null, function (error, characteristics) {
+                var alertLevelCharacteristic = characteristics[0];
+                console.log(alertLevelCharacteristic);
+               
+                console.log('discovered Alert Level characteristic');
+
                 // true if for write without response
-                immediateAlertService.write(new Buffer('hoi'), true, function (error) {
+                alertLevelCharacteristic.write(new Buffer('hoi'), true, function (error) {
                     console.log('set alert level to mid (1)');
                 });
+            });
         });
     });
 });
