@@ -15,7 +15,7 @@ class BluetoothHandler {
         noble.on('discover', function (peripheral) {
             peripheral.connect(function (error) {
 
-                peripheral.discoverServices([targetService], function (error, services) {
+                peripheral.discoverServices(['12ab'], function (error, services) {
                     var service = services[0];
 
 
