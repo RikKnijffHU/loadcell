@@ -8,7 +8,7 @@ var characteristic = null;
 // allow duplicate peripheral to be returned (default false) on discovery event
 var allowDuplicates = false;
 class BluetoothHandler {
-this.characteristic = null;
+
     constructor(peripheral) {
         noble.startScanning(serviceUuids, allowDuplicates);
 
