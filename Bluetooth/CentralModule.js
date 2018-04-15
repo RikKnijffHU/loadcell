@@ -24,7 +24,7 @@ class BluetoothHandler {
 
                     service.discoverCharacteristics(null, async function (error, characteristics) {
                         console.log(characteristics[0].uuid + ' ' + ble.characteristic);
-                     await ble.characteristic = characteristics[0];
+                     ble.characteristic = await characteristics[0];
                     });
                 });
             });
