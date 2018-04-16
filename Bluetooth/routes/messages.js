@@ -1,8 +1,8 @@
 ﻿'use strict';
 var express = require('express');
 var router = express.Router();
-var BluetoothHandler = require('../CentralModule');
-var handler = new BluetoothHandler('12ab');
+var mongojs = require('mongojs')
+var db = mongojs('mongodb://localhost:27017', ['products'])
 
 /* GET users listing. */
 router.get('/', function (req, res) {
@@ -13,8 +13,8 @@ router.get('/', function (req, res) {
 router.post('/', async function (req, res) {
     var data = JSON.stringify(req.body)
     console.log(data);
-    handler.sendBleMessage(data)
-    res.end("ok")
+    db.products.update({ _id: data.name }, { $set: { amount: data.Amount } } ,{ upsert: true });
+    res.end("ok");
 });
 
 module.exports = router;

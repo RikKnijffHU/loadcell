@@ -1,4 +1,6 @@
 ﻿var bleno = require('bleno');
+var mongojs = require('mongojs')
+var db = mongojs('mongodb://localhost:27017', ['products'])
 
 // Once bleno starts, begin advertising our BLE address
 bleno.on('stateChange', function (state) {
@@ -37,12 +39,12 @@ bleno.on('advertisingStart', function (error) {
                     new bleno.Characteristic({
                         value: null,
                         uuid: '34cd',
-                        properties: ['writeWithoutResponse'],
+                        properties: ['read'],
 
-                        // Accept a new value for the characterstic's value
-                        onWriteRequest: function (data, offset, withoutResponse, callback) {
-                            this.value = data;
-                            console.log('Write request: value = ' + this.value.toString("utf-8"));
+                        onReadRequest: function (offset, callback) {
+                            console.log("Read request received");
+                            
+                            callback(this.RESULT_SUCCESS, new Buffer(db.products.find()));
                         }
 
                     })

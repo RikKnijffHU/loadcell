@@ -31,6 +31,13 @@ class BluetoothHandler {
         });
     }
 
+    read() {
+        this.characteristic.read(function (err, buf) {
+            if (err) throw err
+            console.log('characteristic read', [buf.toString('hex')])
+        })
+    }
+
     sendBleMessage(data) {
         console.log('gelukt' + this.characteristic)
         this.characteristic.write(new Buffer(data), true, function (error) {
