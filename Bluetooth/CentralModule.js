@@ -10,9 +10,7 @@ var allowDuplicates = false;
 class BluetoothCentralHandler {
 
     constructor(peripheralAdress) {
-        this.peripheralAdress = peripheralAdress;
-    }
-    setup() {
+        var ble = this;
         this.characteristic = "hoi";
         noble.startScanning(serviceUuids, allowDuplicates);
 
@@ -20,25 +18,26 @@ class BluetoothCentralHandler {
         noble.on('discover', function (peripheral) {
             
             peripheral.connect(function (error) {
-                console.log(peripheral.address);
+                console.log(peripheral.id)
                     peripheral.discoverServices(['12ab'], function (error, services) {
                         var service = services[0];
 
                         service.discoverCharacteristics(null, function (error, characteristics) {
-                            console.log(characteristics[0].uuid);
-                            return characteristics[0];
+                            console.log(characteristics[0].uuid + ' ' + ble.characteristic);
+                            ble.characteristic = characteristics[0];
                         });
 
                     });
                 });
+          
         });
     }
 
-    read(characteristic) {
-        characteristic.read(function (err, buf) {
+    read() {
+        this.characteristic.read(function (err, buf) {
             if (err) throw err
             console.log('characteristic read', [buf.toString('hex')])
-        })
+        });
     }
 
     sendBleMessage(data) {
