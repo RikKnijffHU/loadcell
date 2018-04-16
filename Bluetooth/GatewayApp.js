@@ -1,6 +1,6 @@
 ﻿var handler = require('./CentralModule');
 
-var bleAdressList = ['B8:27:EB:9F:D1:2E'];
+var bleAdressList = ['B8:27:EB:E4:DA:19'];
 var handlerList = [];
 for (bleAdress in bleAdressList) {
     bleHandler = new handler(bleAdress);
