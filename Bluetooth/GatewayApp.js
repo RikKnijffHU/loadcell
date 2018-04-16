@@ -4,6 +4,7 @@ var bleAdressList = ['b8:27:eb:e4:da:19'];
 var handlerList = [];
 for (bleAdress in bleAdressList) {
     bleHandler = new handler(bleAdress);
+    console.log(bleHandler.characteristic);
     handlerList.push(bleHandler);
 }
 
