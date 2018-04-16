@@ -16,9 +16,9 @@ class BluetoothCentralHandler {
 
 
         noble.on('discover', function (peripheral) {
-            if (peripheral.address === peripheralAdress) {
-                peripheral.connect(function (error) {
-
+            
+            peripheral.connect(function (error) {
+                console.log(peripheral.address);
                     peripheral.discoverServices(['12ab'], function (error, services) {
                         var service = services[0];
 
@@ -29,7 +29,7 @@ class BluetoothCentralHandler {
 
                     });
                 });
-            }
+          
         });
     }
 
