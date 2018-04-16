@@ -5,17 +5,17 @@ var handlerList = [];
 for (bleAdress in bleAdressList) {
     bleHandler = new handler(bleAdress);
     
-    handlerList.push(bleHandler.setup());
+    handlerList.push({ handler: bleHandler, char: bleHandler.setup() });
 }
 
 setTimeout(getMeasurements, 30000);
 
 function getMeasurements() {
     this.intervalId = setInterval(function () {
-        for (characteristic in handlerList) {
-            console.log(bleHandler)
-            console.log(characteristic)
-            bleHandler.read(characteristic);
+        for (ble in handlerList) {
+            console.log(ble.handler)
+            console.log(ble.characteristic)
+            ble.handler.read(ble.characteristic);
         }
     }, 10000);
 }
