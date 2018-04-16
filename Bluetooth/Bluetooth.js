@@ -1,54 +1,62 @@
 ﻿var bleno = require('bleno');
+var mongojs = require('mongojs')
+var db = mongojs('mongodb://localhost:27017', ['products'])
 
-// Once bleno starts, begin advertising our BLE address
-bleno.on('stateChange', function (state) {
-    console.log('State change: ' + state);
-    if (state === 'poweredOn') {
-        bleno.startAdvertising('MyDevice', ['12ab']);
-    } else {
-        bleno.stopAdvertising();
-    }
-});
+class BluetoothPeripheralHandler {
 
-// Notify the console that we've accepted a connection
-bleno.on('accept', function (clientAddress) {
-    console.log("Accepted connection from address: " + clientAddress);
-});
+    constructor() {
 
-// Notify the console that we have disconnected from a client
-bleno.on('disconnect', function (clientAddress) {
-    console.log("Disconnected from address: " + clientAddress);
-});
+        // Once bleno starts, begin advertising our BLE address
+        bleno.on('stateChange', function (state) {
+            console.log('State change: ' + state);
+            if (state === 'poweredOn') {
+                bleno.startAdvertising('MyDevice', ['12ab']);
+            } else {
+                bleno.stopAdvertising();
+            }
+        });
 
-// When we begin advertising, create a new service and characteristic
-bleno.on('advertisingStart', function (error) {
-    if (error) {
-        console.log("Advertising start error:" + error);
-    } else {
-        console.log("Advertising start success");
-        bleno.setServices([
+        // Notify the console that we've accepted a connection
+        bleno.on('accept', function (clientAddress) {
+            console.log("Accepted connection from address: " + clientAddress);
+        });
 
-            // Define a new service
-            new bleno.PrimaryService({
-                uuid: '12ab',
-                characteristics: [
+        // Notify the console that we have disconnected from a client
+        bleno.on('disconnect', function (clientAddress) {
+            console.log("Disconnected from address: " + clientAddress);
+        });
 
-                    // Define a new characteristic within that service
-                    new bleno.Characteristic({
-                        value: null,
-                        uuid: '34cd',
-                        properties: ['writeWithoutResponse'],
+        // When we begin advertising, create a new service and characteristic
+        bleno.on('advertisingStart', function (error) {
+            if (error) {
+                console.log("Advertising start error:" + error);
+            } else {
+                console.log("Advertising start success");
+                bleno.setServices([
 
-                        // Accept a new value for the characterstic's value
-                        onWriteRequest: function (data, offset, withoutResponse, callback) {
-                            this.value = data;
-                            console.log('Write request: value = ' + this.value.toString("utf-8"));
-                        }
+                    // Define a new service
+                    new bleno.PrimaryService({
+                        uuid: '12ab',
+                        characteristics: [
 
+                            // Define a new characteristic within that service
+                            new bleno.Characteristic({
+                                value: null,
+                                uuid: '34cd',
+                                properties: ['read'],
+
+                                onReadRequest: function (offset, callback) {
+                                    console.log("Read request received");
+
+                                    callback(this.RESULT_SUCCESS, new Buffer(db.products.find()));
+                                }
+
+                            })
+
+                        ]
                     })
-
-                ]
-            })
-        ]);
+                ]);
+            }
+        });
     }
-});
+}
