@@ -14,6 +14,7 @@ router.post('/', async function (req, res) {
     var data = JSON.stringify(req.body)
     console.log(data);
     handler.sendBleMessage(data)
+    res.end("ok")
 });
 
 module.exports = router;
