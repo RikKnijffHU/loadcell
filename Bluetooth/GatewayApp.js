@@ -3,15 +3,15 @@
 var bleAdressList = ['b8:27:eb:e4:da:19'];
 var handlerList = [];
 for (bleAdress in bleAdressList) {
-    bleHandler = new handler(bleAdress);
+    getMeasurements(bleAdress)
     
-    setTimeout(getMeasurements, 10000); 
+    handlerList.push(bleHandler) 
 }
 
 
-function getMeasurements(bleHandler) {
-    console.log(bleHandler)
-    handlerList.push(bleHandler)
+async function getMeasurements(bleAdress) {
+    return await new handler(bleAdress);
+    
 }
     this.intervalId = setInterval(function () {
         for (bleHandler in handlerList) {
