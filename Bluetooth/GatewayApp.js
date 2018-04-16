@@ -13,7 +13,7 @@ function getMeasurements() {
     this.intervalId = setInterval(function () {
         for (bleHandler in handlerList) {
             console.log(bleHandler)
-            console.log(bleHandler.characteristic.uuid)
+            console.log(bleHandler.characteristic)
             bleHandler.read();
         }
     }, 10000);
