@@ -64,10 +64,11 @@ class MeasureInventory(object):
                 results = self.reject_outliers(val_array)
                 print(results)
                 totalWeight = self.calculateTotalAverageInGrams(results)
-                print("{}{}".format(totalWeight , 'gram'))
-                amount = self.calculateUnits(totalWeight,productHX.product.containter, productHX.product.weight)
-                print("{}{}".format(amount , 'theezakjes'))
-                productHX.product.amount = amount
+                if(totalWeight > productHX.product.containter):
+                    print("{}{}".format(totalWeight , 'gram'))
+                    amount = self.calculateUnits(totalWeight,productHX.product.containter, productHX.product.weight)
+                    print("{}{}".format(amount , 'theezakjes'))
+                    productHX.product.amount = amount
                 productAmountList.append(productHX.product)
         return productAmountList
             
