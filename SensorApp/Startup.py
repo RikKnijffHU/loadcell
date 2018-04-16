@@ -1,12 +1,19 @@
 from MeasureInventory import MeasureInventory
 from Model.EnvironmentVariableMapper import EnvironmentVariableMapper as mapper
 from EnvironmentVariableReader import EnvironmentVariableReader as reader
+from MessageController import MessageController as con
 class Startup(object):
-    """description of class"""
+    """startup class"""
     variablesList = reader.ReadEnvironmentVariables()
     productList = mapper.MapEnvironmentVariables(variablesList)
     measureInventory = MeasureInventory(productList)
-    measureInventory.measureProducts()
+    productHxList = measureInventory.setupProductHxList()
+    while True:
+        try:
+            product = measureInventory.measureProducts(productHxList)
+            con.sendMeasurement(product)
+        except (measureInventory,KeyboardInterrupt, SystemExit):
+                measureInventory.cleanAndExit()
     
 if __name__ == '__main__':
  Startup.main()

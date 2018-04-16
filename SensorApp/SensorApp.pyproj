@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>SensorApp</Name>
     <RootNamespace>SensorApp</RootNamespace>
+    <InterpreterId>Global|PythonCore|3.6</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,7 +31,7 @@
     <Compile Include="EnvironmentVariableReader.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Gatt.py">
+    <Compile Include="MessageController.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mock\HX711.py">
@@ -74,6 +75,12 @@
     <Folder Include="Mock\" />
     <Folder Include="Model\" />
     <Folder Include="Test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="requirements.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

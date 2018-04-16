@@ -56,18 +56,18 @@ class MeasureInventory(object):
             productHXList.append(ProductHX(product, self.setGPIOofProduct(product)))
         return productHXList
 
-    def measureProducts(self):
-       productHXList = self.setupProductHxList()
-       while True:
+    def measureProducts(self, productHXList):
+        productAmountList = []
         for productHX in productHXList:
-            try:
                 val_array = self.ReadMultipleMeasurements(productHX.hx, 10)
                 print(val_array)
                 results = self.reject_outliers(val_array)
                 print(results)
                 totalWeight = self.calculateTotalAverageInGrams(results)
                 print("{}{}".format(totalWeight , 'gram'))
-                inventory = self.calculateUnits(totalWeight,productHX.product.container, productHX.product.weight)
-                print("{}{}".format(inventory , 'theezakjes'))
-            except (self,KeyboardInterrupt, SystemExit):
-                self.cleanAndExit()
+                amount = self.calculateUnits(totalWeight,productHX.product.container, productHX.product.weight)
+                print("{}{}".format(amount , 'theezakjes'))
+                productHX.product.amount = amount
+                productAmountList.append(productHX.product)
+        return productAmountList
+            

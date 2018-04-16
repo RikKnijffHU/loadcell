@@ -6,3 +6,4 @@ class Product(object):
         self.DT = DT
         self.SCK = SCK
         self.Containter = container
+        self.amount = 0
