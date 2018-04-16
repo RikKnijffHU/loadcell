@@ -10,11 +10,12 @@ async function start(bleAdress) {
         handlerList.push(bleHandler)
     }
 }
-start()
+
 async function getMeasurements(bleAdress) {
     return await new handler(bleAdress);
     
 }
+start().then(() => {
     this.intervalId = setInterval(function () {
         for (bleHandler in handlerList) {
             console.log(bleHandler)
@@ -22,7 +23,8 @@ async function getMeasurements(bleAdress) {
             bleHandler.read();
         }
     }, 10000);
-
+}
+)
 
 
 
