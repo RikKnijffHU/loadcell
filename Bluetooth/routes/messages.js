@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
 /* POST send message with bluetooth */
 router.post('/', async function (req, res) {
     console.log(req.body);
-    var handler = await new BluetoothHandler('12ab');
+    var handler = new BluetoothHandler('12ab');
     handler.sendBleMessage('hoi');
 });
 
