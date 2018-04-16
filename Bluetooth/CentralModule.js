@@ -10,7 +10,9 @@ var allowDuplicates = false;
 class BluetoothCentralHandler {
 
     constructor(peripheralAdress) {
-        var ble = this;
+        this.peripheralAdress = peripheralAdress;
+    }
+    setup() {
         this.characteristic = "hoi";
         noble.startScanning(serviceUuids, allowDuplicates);
 
@@ -24,17 +26,16 @@ class BluetoothCentralHandler {
 
                         service.discoverCharacteristics(null, function (error, characteristics) {
                             console.log(characteristics[0].uuid + ' ' + ble.characteristic);
-                            ble.characteristic = characteristics[0];
+                            return characteristics[0];
                         });
 
                     });
                 });
-          
         });
     }
 
-    read() {
-        this.characteristic.read(function (err, buf) {
+    read(characteristic) {
+        characteristic.read(function (err, buf) {
             if (err) throw err
             console.log('characteristic read', [buf.toString('hex')])
         })

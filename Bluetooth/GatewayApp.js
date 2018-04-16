@@ -4,16 +4,17 @@ var bleAdressList = ['b8:27:eb:e4:da:19'];
 var handlerList = [];
 for (bleAdress in bleAdressList) {
     bleHandler = new handler(bleAdress);
-    handlerList.push(bleHandler);
+    
+    handlerList.push(bleHandler.setup());
 }
 
 setTimeout(getMeasurements, 30000);
 
 function getMeasurements() {
     this.intervalId = setInterval(function () {
-        for (bleHandler in handlerList) {
+        for (characteristic in handlerList) {
             console.log(bleHandler)
-            console.log(bleHandler.characteristic)
+            console.log(characteristic)
             bleHandler.read();
         }
     }, 10000);
