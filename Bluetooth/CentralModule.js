@@ -25,6 +25,7 @@ class BluetoothCentralHandler {
                         service.discoverCharacteristics(null, function (error, characteristics) {
                             console.log(characteristics[0].uuid + ' ' + ble.characteristic);
                             ble.characteristic = characteristics[0];
+                            console.log(characteristics[0])
                         });
 
                     });
