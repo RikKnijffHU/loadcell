@@ -7,7 +7,7 @@ class MessageController(object):
     def sendMeasurement(data):
         jsonData = {'ProductName':data.name,
                 'Amount': data.amount}
- 
+        print("send to api")
         # sending post request and saving response as response object
         r = requests.post(url = API_ENDPOINT, data = jsonData)
  
