@@ -11,8 +11,9 @@ router.get('/', function (req, res) {
 
 /* POST send message with bluetooth */
 router.post('/', async function (req, res) {
-    console.log(req.body);
-    handler.sendBleMessage(req.body)
+    var data = JSON.stringify(req.body)
+    console.log(data);
+    handler.sendBleMessage(data)
 });
 
 module.exports = router;
