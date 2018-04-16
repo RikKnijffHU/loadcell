@@ -12,6 +12,8 @@ setTimeout(getMeasurements, 30000);
 function getMeasurements() {
     this.intervalId = setInterval(function () {
         for (bleHandler in handlerList) {
+            console.log(bleHandler)
+            console.log(bleHandler.characteristic.uuid)
             bleHandler.read();
         }
     }, 10000);
