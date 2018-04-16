@@ -2,13 +2,15 @@
 
 var bleAdressList = ['b8:27:eb:e4:da:19'];
 var handlerList = [];
-for (bleAdress in bleAdressList) {
-    var bleHandler = await getMeasurements(bleAdress)
-    
-    handlerList.push(bleHandler) 
+
+async function start(bleAdress) {
+    for (bleAdress in bleAdressList) {
+        var bleHandler = await getMeasurements(bleAdress)
+
+        handlerList.push(bleHandler)
+    }
 }
-
-
+start()
 async function getMeasurements(bleAdress) {
     return await new handler(bleAdress);
     
