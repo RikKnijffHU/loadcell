@@ -37,6 +37,9 @@
     <Compile Include="CentralModule.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="JavaScript.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="routes\index.js" />
     <Compile Include="routes\messages.js" />
     <Compile Include="topic.js" />
