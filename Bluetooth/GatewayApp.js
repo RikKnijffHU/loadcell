@@ -5,10 +5,13 @@ var handlerList = [];
 for (bleAdress in bleAdressList) {
     bleHandler = new handler(bleAdress);
     
-    setTimeout(handlerList.push(bleHandler), 10000); 
+    setTimeout(getMeasurements, 10000); 
 }
 
 
+function getMeasurements(bleHandler) {
+    handlerList.push(bleHandler)
+}
     this.intervalId = setInterval(function () {
         for (bleHandler in handlerList) {
             console.log(bleHandler)
