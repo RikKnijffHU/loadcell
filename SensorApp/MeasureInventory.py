@@ -59,7 +59,7 @@ class MeasureInventory(object):
     def measureProducts(self, productHXList):
         productAmountList = []
         for productHX in productHXList:
-                val_array = self.ReadMultipleMeasurements(productHX.hx, 10)
+                val_array = self.ReadMultipleMeasurements(productHX.hx711, 10)
                 print(val_array)
                 results = self.reject_outliers(val_array)
                 print(results)
