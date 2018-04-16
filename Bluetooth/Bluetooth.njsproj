@@ -37,6 +37,9 @@
     <Compile Include="CentralModule.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GatewayApp.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="JavaScript.js">
       <SubType>Code</SubType>
     </Compile>

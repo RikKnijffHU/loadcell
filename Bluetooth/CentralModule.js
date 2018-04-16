@@ -7,27 +7,29 @@ var targetCharacteristic = '000012AB-0000-1000-8000-00805F9B34FB';  // the chara
 var serviceUuids = [targetService];
 // allow duplicate peripheral to be returned (default false) on discovery event
 var allowDuplicates = false;
-class BluetoothHandler {
+class BluetoothCentralHandler {
 
-    constructor(peripheral) {
+    constructor(peripheralAdress) {
         var ble = this;
         this.characteristic = "hoi";
         noble.startScanning(serviceUuids, allowDuplicates);
 
 
-         noble.on('discover', function (peripheral) {
-            peripheral.connect(function (error) {
+        noble.on('discover', function (peripheral) {
+            if (peripheral.address === peripheralAdress) {
+                peripheral.connect(function (error) {
 
-                peripheral.discoverServices(['12ab'], function (error, services) {
-                    var service = services[0];
-                    
-                    service.discoverCharacteristics(null, function (error, characteristics) {
-                        console.log(characteristics[0].uuid + ' ' + ble.characteristic);
-                        ble.characteristic = characteristics[0];
+                    peripheral.discoverServices(['12ab'], function (error, services) {
+                        var service = services[0];
+
+                        service.discoverCharacteristics(null, function (error, characteristics) {
+                            console.log(characteristics[0].uuid + ' ' + ble.characteristic);
+                            ble.characteristic = characteristics[0];
+                        });
+
                     });
-                    
                 });
-            });
+            }
         });
     }
 
