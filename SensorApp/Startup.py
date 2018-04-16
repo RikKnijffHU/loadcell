@@ -10,8 +10,9 @@ class Startup(object):
     productHxList = measureInventory.setupProductHxList()
     while True:
         try:
-            product = measureInventory.measureProducts(productHxList)
-            con.sendMeasurement(product)
+            productMeasurementList = measureInventory.measureProducts(productHxList)
+            for product in productMeasurementList:
+                con.sendMeasurement(product)
         except (measureInventory,KeyboardInterrupt, SystemExit):
                 measureInventory.cleanAndExit()
     
