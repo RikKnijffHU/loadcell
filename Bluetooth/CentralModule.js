@@ -47,4 +47,4 @@ class BluetoothCentralHandler {
         });
     }
 }
-module.exports = BluetoothHandler;
+module.exports = BluetoothCentralHandler;

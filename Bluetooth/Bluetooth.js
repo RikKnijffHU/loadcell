@@ -60,3 +60,4 @@ class BluetoothPeripheralHandler {
         });
     }
 }
+module.exports = BluetoothPeripheralHandler;
