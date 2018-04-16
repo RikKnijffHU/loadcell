@@ -10,6 +10,7 @@ for (bleAdress in bleAdressList) {
 
 
 function getMeasurements(bleHandler) {
+    console.log(bleHandler)
     handlerList.push(bleHandler)
 }
     this.intervalId = setInterval(function () {
