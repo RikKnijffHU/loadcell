@@ -39,6 +39,7 @@
     </Compile>
     <Compile Include="routes\index.js" />
     <Compile Include="routes\messages.js" />
+    <Compile Include="topic.js" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
