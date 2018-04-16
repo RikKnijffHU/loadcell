@@ -2,7 +2,7 @@
 var peripheralName = "Thee";     // the local name of the peripheral you want
 var targetService = '12ab';         // the service you want
 var targetCharacteristic = '000012AB-0000-1000-8000-00805F9B34FB';  // the characteristic you want
-async = require('async');   //async library
+
 
 var serviceUuids = [targetService];
 // allow duplicate peripheral to be returned (default false) on discovery event
