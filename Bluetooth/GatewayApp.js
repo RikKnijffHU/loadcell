@@ -15,7 +15,7 @@ function getMeasurements() {
         for (characteristic in handlerList) {
             console.log(bleHandler)
             console.log(characteristic)
-            bleHandler.read();
+            bleHandler.read(characteristic);
         }
     }, 10000);
 }
