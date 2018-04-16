@@ -1,7 +1,7 @@
 from Model.Product import Product
 class EnvironmentVariableMapper(object):
     """description of class"""
-
+    @staticmethod
     def MapEnvironmentVariables(enviromentList):
         productList = []
         for enviromentVariables in enviromentList:
