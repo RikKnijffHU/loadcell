@@ -9,9 +9,9 @@ router.get('/', function (req, res) {
 });
 
 /* POST send message with bluetooth */
-router.post('/', function (req, res) {
+router.post('/', async function (req, res) {
     console.log(req.body);
-    var handler = new BluetoothHandler('12ab');
+    var handler = await new BluetoothHandler('12ab');
     handler.sendBleMessage('hoi');
 });
 
