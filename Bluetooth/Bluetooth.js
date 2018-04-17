@@ -50,7 +50,7 @@ class BluetoothPeripheralHandler {
                                     var data = JSON.stringify(db.products.find());
                                     console.log(data);
                                     console.log(this.RESULT_SUCCESS);
-                                    callback(this.RESULT_SUCCESS, new Buffer("hoi"));
+                                    callback(this.RESULT_SUCCESS, new Buffer(data));
                                 }
 
                             })
