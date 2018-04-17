@@ -3,28 +3,21 @@
 var bleAdressList = ['b8:27:eb:e4:da:19'];
 var handlerList = [];
 
-async function start(bleAdress) {
+ function start(bleAdress) {
     for (bleAdress in bleAdressList) {
-        var bleHandler = await getMeasurements(bleAdress)
+        var bleHandler = getMeasurements(bleAdress);
+        this.intervalId = setInterval(function () {
 
-        handlerList.push(bleHandler)
-    }
-}
-
-async function getMeasurements(bleAdress) {
-    return await new handler(bleAdress);
-    
-}
-start().then(() => {
-    this.intervalId = setInterval(function () {
-        for (bleHandler in handlerList) {
             console.log(bleHandler)
             console.log(bleHandler.characteristic)
             bleHandler.read();
-        }
-    }, 10000);
+        }, 10000);
+    }
 }
-)
+
+ function getMeasurements(bleAdress) {
+    return  new handler(bleAdress);
+}
 
 
 

@@ -18,14 +18,14 @@ class BluetoothCentralHandler {
         noble.on('discover', function (peripheral) {
             
             peripheral.connect(function (error) {
-                console.log(peripheral.id)
                     peripheral.discoverServices(['12ab'], function (error, services) {
                         var service = services[0];
 
                         service.discoverCharacteristics(null, function (error, characteristics) {
-                            console.log(characteristics[0].uuid + ' ' + ble.characteristic);
-                            ble.characteristic = characteristics[0];
-                            console.log(characteristics[0])
+                            characteristics[0].read(function (err, buf) {
+                                if (err) throw err
+                                console.log('characteristic read', [buf.toString('hex')])
+                            });
                         });
 
                     });
