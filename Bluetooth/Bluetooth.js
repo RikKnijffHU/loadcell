@@ -50,12 +50,9 @@ class BluetoothPeripheralHandler {
                                     var data = 'hoi';
                                     db.products.find(async function (err, docs) {
                                         // docs is an array of all the documents in mycollection
-                                        data = await docs;
-                                        console.log(docs);
+                                        callback(this.RESULT_SUCCESS, new Buffer(docs));
                                     });
-                                    console.log(data);
-                                    
-                                    callback(this.RESULT_SUCCESS, new Buffer(data));
+                                   
                                 }
 
                             })
