@@ -52,7 +52,6 @@ class BluetoothPeripheralHandler {
                                     db.products.find(async function (err, docs) {
                                         // docs is an array of all the documents in mycollection
                                         console.log(docs)
-                                        console.log(JSON.parse(docs))
                                         console.log(JSON.stringify(docs))
                                         callback(bleno.Characteristic.RESULT_SUCCESS, new Buffer(docs));
                                     });
