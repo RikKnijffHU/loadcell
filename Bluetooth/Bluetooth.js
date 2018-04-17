@@ -54,6 +54,7 @@ class BluetoothPeripheralHandler {
                                         callback(bleno.Characteristic.RESULT_SUCCESS, new Buffer(docs.toArray()));
                                     });
                                     
+                                }
 
                             })
 
