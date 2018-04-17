@@ -50,7 +50,7 @@ class BluetoothPeripheralHandler {
                                     var data = null;
                                         db.products.find(function (err, docs) {
                                             // docs is an array of all the documents in mycollection
-                                            console.log(docs)
+                                            data = docs;
                                         })
                                     console.log(data);
                                     
