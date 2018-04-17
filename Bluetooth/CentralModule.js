@@ -22,7 +22,7 @@ class BluetoothCentralHandler {
                         var service = services[0];
 
                         service.discoverCharacteristics(null, function (error, characteristics) {
-                            this.intervalId = setInterval(function () {
+                            setInterval(function () {
                                 
                             characteristics[0].read(function (err, buf) {
                                 if (err) throw err;
