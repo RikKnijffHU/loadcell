@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
 
 /* POST send message with bluetooth */
 router.post('/', async function (req, res) {
-    var data = JSON.parse(req.body)
+    var data = req.body
     console.log(data);
     db.products.update({ _id: data.name }, { $set: { amount: data.Amount } } ,{ upsert: true });
     res.end("ok");
