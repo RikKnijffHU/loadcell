@@ -1,5 +1,5 @@
 ﻿var bleno = require('bleno');
-const MONGO = require('mongodb').MongoClient;
+const mongodb = require('mongodb').MongoClient;
 
 
 class BluetoothPeripheralHandler {
