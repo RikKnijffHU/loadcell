@@ -44,13 +44,13 @@ class BluetoothPeripheralHandler {
                                 value: null,
                                 uuid: '34cd',
                                 properties: ['read'],
-
+                               
                                 onReadRequest: function (offset, callback) {
                                     console.log("Read request received");
                                     var data = JSON.stringify(db.products.find());
                                     console.log(data);
-                                    console.log(this.RESULT_SUCCESS);
-                                    callback(this.RESULT_SUCCESS, new Buffer("hoi"));
+                                    console.log(bleno.Characteristic.RESULT_SUCCESS);
+                                    callback(bleno.Characteristic.RESULT_SUCCESS, new Buffer("hoi"));
                                 }
 
                             })

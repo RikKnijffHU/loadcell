@@ -23,8 +23,8 @@ class BluetoothCentralHandler {
 
                         service.discoverCharacteristics(null, function (error, characteristics) {
                             characteristics[0].read(function (err, buf) {
-                                if (err) throw err
-                                console.log('characteristic read', [buf.toString('hex')])
+                                if (err) throw err;
+                                console.log('characteristic read', [buf.toString('hex')]);
                             });
                         });
 
