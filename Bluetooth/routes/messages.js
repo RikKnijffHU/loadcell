@@ -14,7 +14,10 @@ router.post('/', async function (req, res) {
     var data = req.body
     console.log(data);
     db.products.update({ _id: data.name }, { $set: { amount: data.amount } }, { upsert: true });
-    console.log(db.products.find());
+    db.products.find(function (err, docs) {
+        // docs is an array of all the documents in mycollection
+        console.log(docs);
+    });
     res.end("ok");
 });
 
