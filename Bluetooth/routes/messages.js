@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var mongojs = require('mongojs')
-var db = mongojs('mongodb://localhost:27017', ['products'])
+var db = mongojs('mongodb://localhost:27017/test', ['products'])
 
 /* GET users listing. */
 router.get('/', function (req, res) {

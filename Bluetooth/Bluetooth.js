@@ -1,6 +1,6 @@
 ﻿var bleno = require('bleno');
 var mongojs = require('mongojs')
-var db = mongojs('mongodb://localhost:27017', ['products'])
+var db = mongojs('mongodb://localhost:27017/test', ['products'])
 
 class BluetoothPeripheralHandler {
 
