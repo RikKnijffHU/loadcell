@@ -15,6 +15,8 @@ var handlerList = [];
     }
 }
 
+start();
+
  function getMeasurements(bleAdress) {
     return  new handler(bleAdress);
 }
