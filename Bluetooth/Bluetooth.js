@@ -48,6 +48,8 @@ class BluetoothPeripheralHandler {
                                 onReadRequest: function (offset, callback) {
                                     console.log("Read request received");
                                     var data = JSON.stringify(db.products.find());
+                                    console.log(data);
+                                    console.log(this.RESULT_SUCCESS);
                                     callback(this.RESULT_SUCCESS, new Buffer(data));
                                 }
 
