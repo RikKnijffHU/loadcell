@@ -5,10 +5,7 @@ var handlerList = [];
 
  function start(bleAdress) {
     for (bleAdress in bleAdressList) {
-        
-        this.intervalId = setInterval(function () {
             getMeasurements(bleAdress);
-        }, 10000);
     }
 }
 
