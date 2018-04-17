@@ -1,11 +1,11 @@
 ﻿var bleno = require('bleno');
-const mongodb = require('mongodb').MongoClient;
+var mongojs = require('mongojs')
 
 
 class BluetoothPeripheralHandler {
 
     constructor() {
-       
+        var db = mongojs('mongodb://localhost:27017/test', ['products'])
         // Once bleno starts, begin advertising our BLE address
         bleno.on('stateChange', function (state) {
             console.log('State change: ' + state);
@@ -45,12 +45,15 @@ class BluetoothPeripheralHandler {
                                 uuid: '34cd',
                                 properties: ['read'],
                                
-                                onReadRequest: async function (offset, callback) {
-                                    const db = await mongodb.MongoClient.connect('mongodb://localhost:27017/test');
-                                    const cursor = db.collection('products').find();
-                                    const result = await cursor.toArray();
+                                onReadRequest:  function (offset, callback) {
+                                    console.log("Read request received");
+                                    var data = 'hoi';
                                     
-                                    callback(this.RESULT_SUCCESS, new Buffer(result));
+                                    db.products.find(async function (err, docs) {
+                                        // docs is an array of all the documents in mycollection
+                                        callback(bleno.Characteristic.RESULT_SUCCESS, new Buffer(docs));
+                                    });
+                                    
                                 }
 
                             })
