@@ -1,11 +1,11 @@
 ﻿var bleno = require('bleno');
 var mongojs = require('mongojs')
-var db = mongojs('mongodb://localhost:27017/test', ['products'])
+
 
 class BluetoothPeripheralHandler {
 
     constructor() {
-
+        var db = mongojs('mongodb://localhost:27017/test', ['products'])
         // Once bleno starts, begin advertising our BLE address
         bleno.on('stateChange', function (state) {
             console.log('State change: ' + state);
@@ -47,7 +47,7 @@ class BluetoothPeripheralHandler {
                                
                                 onReadRequest: function (offset, callback) {
                                     console.log("Read request received");
-                                    var data = db.products.find({});
+                                    var data = db.products.find({}).;
                                     console.log(data);
                                     
                                     callback(this.RESULT_SUCCESS, new Buffer(data));
