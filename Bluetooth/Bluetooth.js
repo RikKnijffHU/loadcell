@@ -48,7 +48,7 @@ class BluetoothPeripheralHandler {
                                 onReadRequest: function (offset, callback) {
                                     console.log("Read request received");
                                     var data = null;
-                                        db.products..find(function (err, docs) {
+                                        db.products.find(function (err, docs) {
                                             // docs is an array of all the documents in mycollection
                                             data = docs;
                                         })
