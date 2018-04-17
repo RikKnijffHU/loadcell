@@ -5,7 +5,7 @@ const MONGO = require('mongodb').MongoClient;
 class BluetoothPeripheralHandler {
 
     constructor() {
-        
+        const db = await mongodb.MongoClient.connect('mongodb://localhost:27017/test');
         // Once bleno starts, begin advertising our BLE address
         bleno.on('stateChange', function (state) {
             console.log('State change: ' + state);
@@ -46,9 +46,8 @@ class BluetoothPeripheralHandler {
                                 properties: ['read'],
                                
                                 onReadRequest:  async function (offset, callback) {
-                                    const db = await MONGO.connect('mongodb://localhost:27017/test');
-                                    const MyCollection = db.collection('products');
-                                    const result = await MyCollection.find().toArray();
+                                    const cursor = db.collection('products').find();
+                                    const result = await cursor.toArray();
                                     
                                     callback(this.RESULT_SUCCESS, new Buffer(result));
                                 }
