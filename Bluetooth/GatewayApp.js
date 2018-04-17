@@ -5,12 +5,9 @@ var handlerList = [];
 
  function start(bleAdress) {
     for (bleAdress in bleAdressList) {
-        var bleHandler = getMeasurements(bleAdress);
+        
         this.intervalId = setInterval(function () {
-
-            console.log(bleHandler)
-            console.log(bleHandler.characteristic)
-            bleHandler.read();
+            getMeasurements(bleAdress);
         }, 10000);
     }
 }
