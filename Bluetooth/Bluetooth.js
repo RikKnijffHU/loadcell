@@ -45,10 +45,10 @@ class BluetoothPeripheralHandler {
                                 uuid: '34cd',
                                 properties: ['read'],
                                
-                                onReadRequest: function (offset, callback) {
+                                onReadRequest: async function (offset, callback) {
                                     console.log("Read request received");
                                     var data = 'hoi';
-                                    db.products.find(function (err, docs) {
+                                    await db.products.find(function (err, docs) {
                                         // docs is an array of all the documents in mycollection
                                         data = docs;
                                         console.log(docs);
