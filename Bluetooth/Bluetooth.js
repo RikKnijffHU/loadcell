@@ -53,6 +53,7 @@ class BluetoothPeripheralHandler {
                                         // docs is an array of all the documents in mycollection
                                        
                                         var result = JSON.stringify(docs);
+                                        console.log(result);
                                         callback(bleno.Characteristic.RESULT_SUCCESS, new Buffer(result));
                                     });
                                     
