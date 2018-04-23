@@ -49,7 +49,7 @@ class BluetoothPeripheralHandler {
                                     console.log("Read request received");
                                     var data = 'hoi';
                                     
-                                    db.products.find(async function (err, docs) {
+                                    db.products.find( function (err, docs) {
                                         // docs is an array of all the documents in mycollection
                                        
                                         var result = JSON.stringify(docs);
