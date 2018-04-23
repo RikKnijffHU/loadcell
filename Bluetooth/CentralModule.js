@@ -28,7 +28,7 @@ class BluetoothCentralHandler {
                                 if (err) throw err;
                                  console.log('characteristic read', [buf.toString()]);
                                 });
-                            }, 10000);
+                            }, 100000);
                         });
 
                     });
