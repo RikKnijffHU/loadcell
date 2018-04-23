@@ -54,7 +54,7 @@ class BluetoothPeripheralHandler {
                                        
                                         var result = JSON.stringify(docs);
                                         console.log(result);
-                                        callback(bleno.Characteristic.RESULT_SUCCESS, new Buffer(result));
+                                        callback(this.RESULT_SUCCESS, new Buffer(result));
                                     });
                                     
                                 }
