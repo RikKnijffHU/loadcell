@@ -3,17 +3,13 @@
 var bleAdressList = ['b8:27:eb:e4:da:19'];
 var handlerList = [];
 
- function start(bleAdress) {
-    for (bleAdress in bleAdressList) {
-            getMeasurements(bleAdress);
-    }
+function start() {
+    new handler(bleAdressList[0]);
 }
 
 start();
 
- function getMeasurements(bleAdress) {
-    return  new handler(bleAdress);
-}
+
 
 
 
