@@ -49,7 +49,7 @@ class MeasureInventory(object):
     def calculateUnits(self, totalWeight, containerWeight):
         print(totalWeight)
         print(containerWeight)
-        print(productWeight)
+       
         inventory = round((totalWeight - containerWeight)/4)
         return inventory
 
