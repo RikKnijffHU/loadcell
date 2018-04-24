@@ -47,6 +47,7 @@ class MeasureInventory(object):
         return weight
 
     def calculateUnits(self, totalWeight, containerWeight, productWeight):
+        print(totalWeight + ' ' + containerWeight + ' ' + productWeight)
         inventory = round((totalWeight - containerWeight)/productWeight)
         return inventory
 
@@ -65,9 +66,9 @@ class MeasureInventory(object):
                 print(results)
                 totalWeight = self.calculateTotalAverageInGrams(results)
                
-                print("{}{}".format(totalWeight , 'gram'))
+                print("{}{}".format(totalWeight , ' gram'))
                 amount = self.calculateUnits(totalWeight,productHX.product.containter, productHX.product.weight)
-                print("{}{}".format(amount , 'theezakjes'))
+                print("{}{}".format(amount , ' theezakjes'))
                 productHX.product.amount = amount
                 productAmountList.append(productHX.product)
         return productAmountList
