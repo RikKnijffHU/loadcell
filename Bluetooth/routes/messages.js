@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
 router.post('/', async function (req, res) {
     var data = req.body
     console.log(data);
-    db.products.update({ _id: data.name }, { $set: { amount: data.amount } }, { upsert: true });
+    db.products.update({ _id: data.ProductName }, { $set: { amount: data.Amount } }, { upsert: true });
     
     res.end("ok");
 });

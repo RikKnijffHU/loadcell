@@ -26,9 +26,9 @@ class BluetoothCentralHandler {
                         service.discoverCharacteristics(null, function (error, characteristics) {
                             setInterval(function () {
                                 
-                            characteristics[0].read(async function (err, buf) {
+                            characteristics[0].read( function (err, buf) {
                                 if (err) throw err;
-                                await console.log('characteristic read', [buf.toString()]);
+                                 console.log('characteristic read', [buf.toString()]);
                                 });
                             }, 10000);
                         });
