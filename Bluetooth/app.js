@@ -6,7 +6,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var BluetoothPeripheralHandler = require('./Bluetooth')
+var BluetoothPeripheralHandler = require('./BluetoothPeripheralHandler')
 var routes = require('./routes/index');
 var messages = require('./routes/messages');
 
