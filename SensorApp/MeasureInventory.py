@@ -43,7 +43,7 @@ class MeasureInventory(object):
         return results
 
     def calculateTotalAverageInGrams(self, results):
-        weight = np.sum(results)/len(results)
+        weight = round(np.sum(results)/len(results))
         return weight
 
     def calculateUnits(self, totalWeight, containerWeight, productWeight):
