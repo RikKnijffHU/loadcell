@@ -67,7 +67,7 @@ class MeasureInventory(object):
                 totalWeight = self.calculateTotalAverageInGrams(results)
                
                 print("{}{}".format(totalWeight , ' gram'))
-                amount = self.calculateUnits(totalWeight,productHX.product.containter, productHX.product.weight)
+                amount = self.calculateUnits(totalWeight,19, 4)
                 print("{}{}".format(amount , ' theezakjes'))
                 productHX.product.amount = amount
                 productAmountList.append(productHX.product)
