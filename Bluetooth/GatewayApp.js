@@ -1,19 +1,16 @@
-﻿var handler = require('./CentralModule');
+﻿var handler = require('./BluetoothCentralHandler');
 
 var bleAdressList = ['b8:27:eb:e4:da:19'];
 var handlerList = [];
 
- function start(bleAdress) {
+ function start() {
     for (bleAdress in bleAdressList) {
-            getMeasurements(bleAdress);
+        var bleHandler = new handler(bleAdress);
+        bleHandler.readPeripheral();
     }
 }
 
 start();
-
- function getMeasurements(bleAdress) {
-    return  new handler(bleAdress);
-}
 
 
 

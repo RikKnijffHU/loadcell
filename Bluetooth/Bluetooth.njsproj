@@ -31,16 +31,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
-    <Compile Include="Bluetooth.js">
+    <Compile Include="BluetoothPeripheralHandler.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CentralModule.js">
+    <Compile Include="BluetoothCentralHandler.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GatewayApp.js">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="JavaScript.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="routes\index.js" />

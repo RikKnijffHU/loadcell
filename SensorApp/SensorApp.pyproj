@@ -22,12 +22,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BleServer.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Bluetooth.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="EnvironmentVariableReader.py">
       <SubType>Code</SubType>
     </Compile>
