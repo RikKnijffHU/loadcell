@@ -11,7 +11,7 @@ class Test_Test_EnvironmentVariableMapper(unittest.TestCase):
             
             product = Mapper.MapEnvironmentVariables(variableList)[0]
             self.assertEqual(product.name, 'thee grey')
-            self.assertEqual(product.weight, '2')
+            self.assertEqual(product.weight, 2)
             self.assertEqual(product.DT, '14')
             self.assertEqual(product.SCK, '15')
 

@@ -5,5 +5,5 @@ class Product(object):
         self.weight = weight
         self.DT = DT
         self.SCK = SCK
-        self.containter = container
+        self.container = container
         self.amount = 0

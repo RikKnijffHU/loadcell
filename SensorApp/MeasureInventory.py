@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import sys
 import numpy as np
+import math
 from outliers import smirnov_grubbs as grubbs
 from Model.Product import Product
 from Model.ProductHX import ProductHX
@@ -29,13 +30,13 @@ class MeasureInventory(object):
     def ReadMultipleMeasurements(self, hx, measurements):
         val_array = np.empty((0))
         for x in range(0, measurements): 
-            val = max(0, int(hx.get_weight(5)))
+            val = max(0, int(hx.get_weight(1)))
             print(val)
             val_array = np.append(val_array, [val])
             
             hx.power_down()
             hx.power_up()
-            time.sleep(1)
+            time.sleep(3)
         return val_array
 
     def reject_outliers(self, val_array):
@@ -43,14 +44,16 @@ class MeasureInventory(object):
         return results
 
     def calculateTotalAverageInGrams(self, results):
-        weight = round(np.sum(results)/len(results))
+        weight = math.floor(np.sum(results)/len(results))
         return weight
 
-    def calculateUnits(self, totalWeight, containerWeight):
+    def calculateUnits(self, totalWeight, containerWeight, productWeight):
         print(totalWeight)
         print(containerWeight)
-       
-        inventory = round((totalWeight - containerWeight)/4)
+        if (((totalWeight - containerWeight)/productWeight)> 1.0):
+            inventory = math.floor((totalWeight - containerWeight)/productWeight)
+        else:
+            inventory = round((totalWeight - containerWeight)/productWeight)
         return inventory
 
     def setupProductHxList(self):
@@ -69,7 +72,7 @@ class MeasureInventory(object):
                 totalWeight = self.calculateTotalAverageInGrams(results)
                
                 print("{}{}".format(totalWeight , ' gram'))
-                amount = self.calculateUnits(totalWeight,19)
+                amount = self.calculateUnits(totalWeight,productHX.product.containter, productHX.product.weight)
                 print("{}{}".format(amount , ' theezakjes'))
                 productHX.product.amount = amount
                 productAmountList.append(productHX.product)

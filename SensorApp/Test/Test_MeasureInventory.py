@@ -76,7 +76,7 @@ class Test_MeasureInventory(unittest.TestCase):
     @patch('MeasureInventory.HX711' , new = HX711)
     def test_ReadMultipleMeasurementsSchouldReturnListWithLenghtFive(self, mock_method):
         productList = []
-        product = Product('thee grey','2','14','15','19')
+        product = Product('thee grey',2,'14','15','19')
         
         productList.append(product)
         measureInventory = MeasureInventory.MeasureInventory(productList)
@@ -90,38 +90,38 @@ class Test_MeasureInventory(unittest.TestCase):
     @patch('MeasureInventory.HX711' , new = HX711)
     def test_calculateUnitsSchouldReturnTenUnits(self):
         productList = []
-        product = Product('thee grey',4,'14','15',19)
+        product = Product('thee grey',4.1,'14','15',19)
         
         productList.append(product)
         measureInventory = MeasureInventory.MeasureInventory(productList)     
 
-        Units= measureInventory.calculateUnits(59,product.Containter,product.weight)
-        self.assertEqual(Units,10)
+        Units= measureInventory.calculateUnits(59,product.container,product.weight)
+        self.assertEqual(Units,9)
 
     @patch('MeasureInventory.GPIO', new = GPIO)
     @patch('MeasureInventory.HX711' , new = HX711)
     def test_calculateUnitsSchouldReturnSixUnits(self):
         productList = []
-        product = Product('thee grey',4,'14','15',19)
+        product = Product('thee grey',4.1,'14','15',19.0)
         
         productList.append(product)
         measureInventory = MeasureInventory.MeasureInventory(productList)     
 
-        Units = measureInventory.calculateUnits(41,product.Containter,product.weight)
-        self.assertEqual(Units, 6)
+        Units = measureInventory.calculateUnits(41,product.container,product.weight)
+        self.assertEqual(Units, 5)
 
     @patch('MeasureInventory.GPIO', new = GPIO)
     @patch('MeasureInventory.HX711' , new = HX711)
     def test_setupProductHxListSchouldReturnCorrectAttributeValues(self):
         productList = []
-        product = Product('thee grey',4,14,15,19)
+        product = Product('thee grey',4.1,14,15,19)
         
         productList.append(product)
         measureInventory = MeasureInventory.MeasureInventory(productList)     
 
         productHXList = measureInventory.setupProductHxList()
         self.assertEqual(productHXList[0].product.name, 'thee grey')
-        self.assertEqual(productHXList[0].product.Containter, 19)
+        self.assertEqual(productHXList[0].product.container, 19)
         self.assertEqual(productHXList[0].product.DT, 14)
         self.assertEqual(productHXList[0].product.SCK, 15)
 
@@ -129,7 +129,7 @@ class Test_MeasureInventory(unittest.TestCase):
     @patch('MeasureInventory.HX711' , new = HX711)
     def test_setupProductHxListSchouldReturnListWithTwoProductHX(self):
         productList = []
-        product = Product('thee grey',4,14,15,19)
+        product = Product('thee grey',4.1,14,15,19)
         product2= Product('thee aardbei',2,16,17,12)
         
         productList.append(product)
@@ -145,7 +145,7 @@ class Test_MeasureInventory(unittest.TestCase):
     @patch('MeasureInventory.HX711' , new = HX711)
     def test_reject_outliersSchouldReturnListWithoutOutliers(self):
         productList = []
-        product = Product('thee grey',4,14,15,19)
+        product = Product('thee grey',4.1,14,15,19)
         measurementList=[29,30,1029,30,31,31,1,29,31,30]      
         productList.append(product)
         

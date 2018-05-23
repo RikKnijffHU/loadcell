@@ -1,9 +1,0 @@
-This is only intended to prevent interpreter warnings when developing on Mac
-or Windows.
-
-To install the module:
-
-$ sudo python setup.py install
-  or
-$ sudo python3 setup.py install
-

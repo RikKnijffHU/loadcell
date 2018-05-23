@@ -7,7 +7,7 @@ class EnvironmentVariableMapper(object):
         for enviromentVariables in enviromentList:
                 print(enviromentVariables) 
                 variable = enviromentVariables.split(':')
-                product = Product(variable[0],variable[1],variable[2],variable[3],variable[4])
+                product = Product(variable[0],float(variable[1]),variable[2],variable[3],float(variable[4]))
                 productList.append(product)
                 print(len(enviromentList))    
 
