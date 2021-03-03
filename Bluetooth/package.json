@@ -21,7 +21,7 @@
     "mongojs": "^2.5.0",
     "morgan": "^1.7.0",
     "noble": "^1.9.1",
-    "pug": "^2.0.0-beta6",
+    "pug": "^3.0.1",
     "serve-favicon": "^2.3.0"
   }
 }
